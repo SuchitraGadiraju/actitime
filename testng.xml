@@ -1,21 +1,8 @@
-
-
 <suite parallel="tests" name="Suite">
-
-
--<test name="TestLocal">
-
+<test name="TestLocal">
 <parameter name="property" value="config.properties"/>
-
-
--<packages>
-
+<packages>
 <package name="script"/>
-
 </packages>
-
 </test>
-
-
-
 </suite>
