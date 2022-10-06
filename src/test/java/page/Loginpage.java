@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Loginpage {
 	@FindBy(id="username")
@@ -15,6 +17,10 @@ public class Loginpage {
 	
 	@FindBy(xpath="//div[.='Login ']")
 	private WebElement loginBTN;
+	
+	
+	@FindBy(xpath = "//span[contains(text(),'invalid')]")
+	private WebElement errMsg;
 	
 	public Loginpage(WebDriver driver){
 		PageFactory.initElements(driver,this);
@@ -30,5 +36,18 @@ public class Loginpage {
 	
 	public void clickLoginButton() {
 		loginBTN.click();
+	}
+	
+	
+	public boolean verifErrMsgIsDisplayed(WebDriverWait wait) {
+		try
+		{
+			wait.until(ExpectedConditions.visibilityOf(errMsg));
+			return true;
+		}
+		catch (Exception e)
+		{
+			return false;
+		}
 	}
 }
